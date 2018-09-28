@@ -1,0 +1,7 @@
+.*
+!.gitignore
+!.babelrc
+vendor
+node_modules
+static/js/bundle.js
+games
