@@ -2,6 +2,7 @@
   "name": "games",
   "version": "1.0.0",
   "description": "Games site",
+  "main": "src/index.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development --watch",
@@ -9,8 +10,7 @@
   },
   "author": "martyn@norganna.com",
   "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
@@ -20,5 +20,6 @@
     "react-dom": "^16.5.2",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.1"
-  }
+  },
+  "devDependencies": {}
 }
