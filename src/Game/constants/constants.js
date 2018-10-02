@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 export const GameShape = PropTypes.shape({
   type: PropTypes.string.isRequired,
@@ -39,4 +39,3 @@ export const GameList = [
     player2: "🔵"
   }
 ];
-

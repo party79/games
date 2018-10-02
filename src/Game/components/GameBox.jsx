@@ -1,15 +1,19 @@
-import React from 'react';
+import React from "react";
 import ReactDOM from "react-dom";
-import PropTypes from 'prop-types';
-import {GameShape} from '../constants/constants';
-import {GetStatus} from '../../helpers/tools';
+import PropTypes from "prop-types";
+import { GameShape } from "../constants/constants";
+import { GetStatus } from "../../helpers/tools";
 
-const GameBox = ({children, game, history, squares, winning, stepNumber, jumpTo}) => {
-  const [winner, draw, checkmate, checks] = GetStatus(
-    squares,
-    winning,
-    game
-  );
+const GameBox = ({
+  children,
+  game,
+  history,
+  squares,
+  winning,
+  stepNumber,
+  jumpTo
+}) => {
+  const [winner, draw, checkmate, checks] = GetStatus(squares, winning, game);
 
   const moves = history.map((step, move) => {
     const desc = move ? "Go to move #" + move : "Go to game start";
@@ -28,8 +32,7 @@ const GameBox = ({children, game, history, squares, winning, stepNumber, jumpTo}
   } else if (checkmate) {
     status = <div>Checkmate: {checkmate}</div>;
   } else {
-    const player =
-      stepNumber % 2 === 0 ? game.player1 : game.player2;
+    const player = stepNumber % 2 === 0 ? game.player1 : game.player2;
     status = (
       <div>
         Player: {player}
@@ -50,26 +53,19 @@ const GameBox = ({children, game, history, squares, winning, stepNumber, jumpTo}
 };
 
 GameBox.propTypes = {
-  children: PropTypes.arrayOf(
-    PropTypes.element.isRequired
-  ).isRequired,
+  children: PropTypes.arrayOf(PropTypes.element.isRequired).isRequired,
   game: GameShape.isRequired,
   history: PropTypes.arrayOf(
     PropTypes.shape({
-      squares: PropTypes.arrayOf(
-        PropTypes.number
-      ).isRequired
+      squares: PropTypes.arrayOf(PropTypes.number).isRequired
     })
   ).isRequired,
   squares: PropTypes.array.isRequired,
   winning: PropTypes.arrayOf(
-    PropTypes.arrayOf(
-      PropTypes.number.isRequired
-    ).isRequired
+    PropTypes.arrayOf(PropTypes.number.isRequired).isRequired
   ).isRequired,
   stepNumber: PropTypes.number.isRequired,
   jumpTo: PropTypes.func.isRequired
 };
 
 export default GameBox;
-

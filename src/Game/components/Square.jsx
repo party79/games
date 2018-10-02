@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import ReactDOM from "react-dom";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-const Square = ({disabled, player, player1, player2, onClick}) => {
+const Square = ({ disabled, player, player1, player2, onClick }) => {
   let value;
   if (player === 1) {
     value = player1;
@@ -10,11 +10,7 @@ const Square = ({disabled, player, player1, player2, onClick}) => {
     value = player2;
   }
   return (
-    <button
-      className="square"
-      disabled={disabled}
-      onClick={onClick}
-    >
+    <button className="square" disabled={disabled} onClick={onClick}>
       {value}
     </button>
   );
@@ -33,4 +29,3 @@ Square.defaultProps = {
 };
 
 export default Square;
-

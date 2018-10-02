@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import PropTypes from 'prop-types';
-import Game from '../Game/Game.jsx';
-import {GameShape} from '../Game/constants/constants';
+import PropTypes from "prop-types";
+import Game from "../Game/Game.jsx";
+import { GameShape } from "../Game/constants/constants";
 
 class Games extends Component {
   constructor(props) {
@@ -25,11 +25,7 @@ class Games extends Component {
         <ul>
           {games.map((game, index) => (
             <li key={index}>
-              <button
-                onClick={() => this.setGame(index)}
-              >
-                {game.type}
-              </button>
+              <button onClick={() => this.setGame(index)}>{game.type}</button>
             </li>
           ))}
         </ul>
@@ -41,10 +37,7 @@ class Games extends Component {
 }
 
 Games.propTypes = {
-  games: PropTypes.arrayOf(
-    GameShape.isRequired
-  ).isRequired
+  games: PropTypes.arrayOf(GameShape.isRequired).isRequired
 };
 
 export default Games;
-

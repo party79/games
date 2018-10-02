@@ -124,7 +124,18 @@ export const GetStatus = (squares, winning, game) => {
   return [winner, draw, checkmate, checks];
 };
 
-export const GeneratePlayArea = ({type, gridX, gridY, winL, winH, winV, winD, gravity, player1, player2}) => {
+export const GeneratePlayArea = ({
+  type,
+  gridX,
+  gridY,
+  winL,
+  winH,
+  winV,
+  winD,
+  gravity,
+  player1,
+  player2
+}) => {
   let board = [];
   let winning = [];
 
@@ -165,9 +176,7 @@ export const GeneratePlayArea = ({type, gridX, gridY, winL, winH, winV, winD, gr
         let diag2 = [];
         for (let i = 0; i < winL; i++) {
           diag1.push(pos + i * (gridY + 1));
-          diag2.push(
-            pos + (i + 1) * (gridY - 1) - (gridY - winL)
-          );
+          diag2.push(pos + (i + 1) * (gridY - 1) - (gridY - winL));
         }
         winning.push(diag1);
         winning.push(diag2);
