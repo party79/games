@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { GameShape } from "./constants/constants";
 import GameBox from "./components/GameBox.jsx";
 import Row from "./components/Row.jsx";
 import Square from "./components/Square.jsx";
+import { GameShape } from "../constants/constants";
 import { GetStatus, GeneratePlayArea } from "../helpers/tools";
 
 class Game extends Component {

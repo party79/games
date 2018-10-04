@@ -13,6 +13,18 @@ export const GameShape = PropTypes.shape({
   player2: PropTypes.string.isRequired
 });
 
+export const HistoryItem = PropTypes.shape({
+  squares: PropTypes.arrayOf(PropTypes.number).isRequired
+});
+
+export const HistoryItems = PropTypes.arrayOf(HistoryItem);
+
+export const SquaresItem = PropTypes.arrayOf(PropTypes.number).isRequired;
+
+export const WinningItems = PropTypes.arrayOf(
+  PropTypes.arrayOf(PropTypes.number.isRequired).isRequired
+).isRequired;
+
 export const GameList = [
   {
     type: "Tic Tac Toe",
