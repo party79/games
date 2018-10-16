@@ -39,18 +39,17 @@ export const GameConnect4 = new gameItem({
   player1: "🔴",
   player2: "🔵"
 });
-export const GameList = [GameTicTacToe, GameConnect4];
 
 export const PropGameItem = PropTypes.instanceOf(gameItem);
 
-export const GameListContext = React.createContext(GameList);
+export const GameListContext = React.createContext();
 GameListContext.propTypes = {
   value: PropTypes.arrayOf(PropGameItem.isRequired).isRequired
 };
 
 export const PropGameBoard = PropTypes.instanceOf(gameBoard);
 
-export const GameBoardContext = React.createContext({});
+export const GameBoardContext = React.createContext();
 GameBoardContext.propTypes = {
   value: PropGameBoard.isRequired
 };

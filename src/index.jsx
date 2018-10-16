@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import Games from "./Games/Games.jsx";
-import { GameList, GameListContext } from "./constants/constants";
+import {
+  GameTicTacToe,
+  GameConnect4,
+  GameListContext
+} from "./constants/constants";
 
 class App extends Component {
   render() {
     return (
-      <GameListContext.Provider value={GameList}>
+      <GameListContext.Provider value={[GameTicTacToe, GameConnect4]}>
         <Games />
       </GameListContext.Provider>
     );
