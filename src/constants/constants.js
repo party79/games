@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import gameBoard from "../helpers/gameBoard";
 import gameItem from "../helpers/gameItem";
 
 export const PropSquaresItem = PropTypes.arrayOf(PropTypes.number).isRequired;
@@ -47,13 +48,7 @@ GameListContext.propTypes = {
   value: PropTypes.arrayOf(PropGameItem.isRequired).isRequired
 };
 
-export const PropGameBoard = PropTypes.shape({
-  game: PropGameItem.isRequired,
-  history: PropHistoryItems.isRequired,
-  stepNumber: PropTypes.number.isRequired,
-  board: PropBoardItems,
-  winning: PropWinningItems
-});
+export const PropGameBoard = PropTypes.instanceOf(gameBoard);
 
 export const GameBoardContext = React.createContext({});
 GameBoardContext.propTypes = {

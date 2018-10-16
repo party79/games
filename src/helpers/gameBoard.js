@@ -1,11 +1,11 @@
 import { CalculateWin, GetStatus } from "./tools";
 
 class gameBoard {
-  constructor(game) {
+  constructor({ game, history, step }) {
     this.data = {
       game,
-      history: [Array(game.squares).fill(null)],
-      step: 0
+      history: history,
+      step: step
     };
   }
 
@@ -32,7 +32,10 @@ class gameBoard {
   }
 
   get status() {
-    const game = this.game;
+    return gameBoard.getStatus(this.game, this.squares);
+  }
+
+  static getStatus(game, squares) {
     const [
       player1checks,
       player2checks,
@@ -40,7 +43,7 @@ class gameBoard {
       player2canWin,
       player1hasWon,
       player2hasWon
-    ] = CalculateWin(this.squares, game.play.winning, game.game);
+    ] = CalculateWin(squares, game.play.winning, game.game);
 
     let winner;
     let draw;
@@ -69,45 +72,16 @@ class gameBoard {
     return [winner, draw, checkmate, checks];
   }
 
+  amDisabled(grid) {
+    return gameBoard.amDisabled(this.game, grid);
+  }
+
+  static amDisabled(game, grid) {
+    return game.gravity && grid.x > 0;
+  }
+
   player(square) {
     return this.game.playerSymbol(this.squares[square]);
-  }
-  amDisabled(grid) {
-    return this.game.gravity && grid.x > 0;
-  }
-
-  addHistory(square, grid) {
-    if (this.amDisabled(grid)) {
-      return;
-    }
-    const game = this.game;
-    const squares = this.squares.slice();
-    const [winner, draw, checkmate, checks] = this.status;
-
-    if (winner || draw || checkmate || squares[square]) {
-      return;
-    }
-    const player = this.step % 2 === 0 ? 1 : 2;
-
-    if (game.gravity) {
-      const gameGrid = game.grid;
-      for (let x = gameGrid.x - 1; x >= 0; x--) {
-        const item = x * gameGrid.y + grid.y;
-        if (!squares[item]) {
-          square = item;
-          break;
-        }
-      }
-    }
-    squares[square] = player;
-
-    this.data.step = this.data.history.length;
-    this.data.history = this.data.history.concat([squares]);
-  }
-
-  remHistory(move) {
-    this.data.step = move;
-    this.data.history = this.history.slice(0, move + 1);
   }
 }
 

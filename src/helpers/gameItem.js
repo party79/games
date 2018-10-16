@@ -1,4 +1,3 @@
-import gameBoard from "./gameBoard";
 import { GeneratePlayArea } from "./tools";
 
 class gameItem {
@@ -34,10 +33,6 @@ class gameItem {
 
   get game() {
     return this.data.game;
-  }
-
-  get board() {
-    return new gameBoard(this);
   }
 
   get play() {
