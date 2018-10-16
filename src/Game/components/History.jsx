@@ -1,23 +1,25 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-import { HistoryItems } from "../../constants/constants";
+import { GameBoardContext, PropHistoryItems } from "../../constants/constants";
 
-const History = ({ history, jumpTo }) => (
-  <ol>
-    {history.map((step, move) => (
-      <li key={move}>
-        <button onClick={() => jumpTo(move)}>
-          {move ? "Go to move #" + move : "Go to game start"}
-        </button>
-      </li>
-    ))}
-  </ol>
+const History = ({ remHistory }) => (
+  <GameBoardContext.Consumer>
+    {board => (
+      <ol>
+        {board.history.map((step, move) => (
+          <li key={move}>
+            <button onClick={() => remHistory(move)}>
+              {move ? "Go to move #" + move : "Go to game start"}
+            </button>
+          </li>
+        ))}
+      </ol>
+    )}
+  </GameBoardContext.Consumer>
 );
 
 History.propTypes = {
-  history: HistoryItems.isRequired,
-  jumpTo: PropTypes.func.isRequired
+  remHistory: PropTypes.func.isRequired
 };
 
 export default History;

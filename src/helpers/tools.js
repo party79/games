@@ -87,43 +87,6 @@ export const CalculateWin = (squares, winning, game) => {
   ];
 };
 
-export const GetStatus = (squares, winning, game) => {
-  const [
-    player1checks,
-    player2checks,
-    player1canWin,
-    player2canWin,
-    player1hasWon,
-    player2hasWon
-  ] = CalculateWin(squares, winning, game);
-
-  let winner;
-  let draw;
-  let checkmate;
-  let checks = [];
-
-  if (player1hasWon > 0) {
-    winner = game.player1;
-  } else if (player2hasWon > 0) {
-    winner = game.player2;
-  } else if (player1canWin === 0 && player2canWin === 0) {
-    draw = true;
-  } else if (player1checks.length > 1 && player2checks.length === 0) {
-    checkmate = game.player1;
-  } else if (player2checks.length > 1 && player1checks.length === 0) {
-    checkmate = game.player2;
-  } else {
-    if (player1checks.length) {
-      checks.push(game.player1);
-    }
-    if (player2checks.length) {
-      checks.push(game.player2);
-    }
-  }
-
-  return [winner, draw, checkmate, checks];
-};
-
 export const GeneratePlayArea = ({
   type,
   gridX,
@@ -136,7 +99,7 @@ export const GeneratePlayArea = ({
   player1,
   player2
 }) => {
-  let board = [];
+  let grid = [];
   let winning = [];
 
   for (let x = 0; x < gridX; x++) {
@@ -144,7 +107,7 @@ export const GeneratePlayArea = ({
     for (let y = 0; y < gridY; y++) {
       row.push(x * gridY + y);
     }
-    board.push(row);
+    grid.push(row);
     if (winH) {
       for (let i = 0; i <= gridY - winL; i++) {
         let row = [];
@@ -184,5 +147,5 @@ export const GeneratePlayArea = ({
     }
   }
 
-  return [board, winning];
+  return [grid, winning];
 };

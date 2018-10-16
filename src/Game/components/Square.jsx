@@ -1,31 +1,30 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
+import { GameBoardContext } from "../../constants/constants";
 
-const Square = ({ disabled, player, player1, player2, onClick }) => {
-  let value;
-  if (player === 1) {
-    value = player1;
-  } else if (player === 2) {
-    value = player2;
-  }
-  return (
-    <button className="square" disabled={disabled} onClick={onClick}>
-      {value}
-    </button>
-  );
-};
+const button = (board, grid, square, addHistory) => (
+  <button
+    className="square"
+    disabled={board.amDisabled(grid)}
+    onClick={addHistory}
+  >
+    {board.player(square)}
+  </button>
+);
+
+const Square = ({ grid, square, addHistory }) => (
+  <GameBoardContext.Consumer>
+    {board => button(board, grid, square, addHistory)}
+  </GameBoardContext.Consumer>
+);
 
 Square.propTypes = {
-  disabled: PropTypes.bool,
-  player: PropTypes.number,
-  player1: PropTypes.string.isRequired,
-  player2: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
-};
-Square.defaultProps = {
-  disabled: false,
-  player: 0
+  grid: PropTypes.shape({
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired
+  }).isRequired,
+  square: PropTypes.number.isRequired,
+  addHistory: PropTypes.func.isRequired
 };
 
 export default Square;

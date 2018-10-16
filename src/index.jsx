@@ -1,11 +1,15 @@
 import React, { Component } from "react";
-import ReactDOM, { render } from "react-dom";
+import { render } from "react-dom";
 import Games from "./Games/Games.jsx";
-import { GameList } from "./constants/constants";
+import { GameList, GameListContext } from "./constants/constants";
 
 class App extends Component {
   render() {
-    return <Games games={GameList} />;
+    return (
+      <GameListContext.Provider value={GameList}>
+        <Games />
+      </GameListContext.Provider>
+    );
   }
 }
 

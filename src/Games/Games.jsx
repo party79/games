@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import PropTypes from "prop-types";
-import GameList from "./components/GameList.jsx";
+import GameSelect from "./components/GameSelect.jsx";
 import Game from "../Game/Game.jsx";
-import { GameShape } from "../constants/constants";
+import { GameListContext } from "../constants/constants";
 
 class Games extends Component {
   constructor(props) {
@@ -18,21 +16,21 @@ class Games extends Component {
   }
 
   render() {
-    const games = this.props.games;
-    const game = games[this.state.game];
     return (
       <React.Fragment>
         <div>Games!</div>
-        <GameList games={games} setGame={game => this.setGame(game)} />
-        <div>Game: {game.type}</div>
-        <Game game={game} />
+        <GameSelect setGame={game => this.setGame(game)} />
+        <GameListContext.Consumer>
+          {games => (
+            <React.Fragment>
+              <div>Game: {games[this.state.game].name}</div>
+              <Game game={games[this.state.game]} />
+            </React.Fragment>
+          )}
+        </GameListContext.Consumer>
       </React.Fragment>
     );
   }
 }
-
-Games.propTypes = {
-  games: PropTypes.arrayOf(GameShape.isRequired).isRequired
-};
 
 export default Games;
